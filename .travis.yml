@@ -1,0 +1,21 @@
+language: cpp
+compiler: gcc
+dist: trusty
+
+# before_script: 
+#  - cd Transpose
+
+before_install:
+  - cd Transpose
+  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+  - sudo apt-get update -qq
+
+install: 
+  - sudo apt-get install -qq g++-6
+  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
+
+script: 
+  - g++ transpose.cpp -std=c++11 -o transpose11
+  - g++ transpose.cpp -std=c++14 -o transpose14
+  - g++ transpose.cpp -std=c++17 -o transpose17
+  - g++ transpose.cpp -std=c++11 -O2 -o transpose11O2
